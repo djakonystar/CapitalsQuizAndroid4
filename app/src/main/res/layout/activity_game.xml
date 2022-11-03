@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_quiz"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".GameActivity">
+
+    <TextView
+        android:id="@+id/tv_question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_16"
+        android:layout_marginTop="@dimen/margin_16"
+        android:letterSpacing="0.05"
+        android:textAlignment="center"
+        android:textSize="@dimen/text_size_title"
+        android:textStyle="bold"
+        tools:ignore="SpUsage" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_option_one"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_32"
+        android:layout_marginTop="@dimen/margin_84"
+        android:letterSpacing="0.15"
+        android:textSize="@dimen/text_size_16"
+        android:paddingVertical="@dimen/padding_12"
+        android:textColor="@color/white"
+        app:cornerRadius="24dp"
+        app:strokeColor="@color/white"
+        app:strokeWidth="2dp"
+        tools:ignore="SpUsage" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_option_two"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_32"
+        android:layout_marginTop="@dimen/margin_16"
+        android:letterSpacing="0.15"
+        android:textSize="@dimen/text_size_16"
+        android:paddingVertical="@dimen/padding_12"
+        android:textColor="@color/white"
+        app:cornerRadius="24dp"
+        app:strokeColor="@color/white"
+        app:strokeWidth="2dp"
+        tools:ignore="SpUsage" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_option_three"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_32"
+        android:layout_marginTop="@dimen/margin_16"
+        android:letterSpacing="0.15"
+        android:textSize="@dimen/text_size_16"
+        android:paddingVertical="@dimen/padding_12"
+        android:textColor="@color/white"
+        app:cornerRadius="24dp"
+        app:strokeColor="@color/white"
+        app:strokeWidth="2dp"
+        tools:ignore="SpUsage" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_option_four"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_32"
+        android:layout_marginTop="@dimen/margin_16"
+        android:letterSpacing="0.15"
+        android:textSize="@dimen/text_size_16"
+        android:paddingVertical="@dimen/padding_12"
+        android:textColor="@color/white"
+        app:cornerRadius="24dp"
+        app:strokeColor="@color/white"
+        app:strokeWidth="2dp"
+        tools:ignore="SpUsage" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_32"
+        android:layout_marginTop="@dimen/margin_64"
+        android:textSize="@dimen/text_size_18dp"
+        android:backgroundTint="@color/color_main"
+        android:letterSpacing="0.15"
+        android:paddingVertical="@dimen/padding_16"
+        app:cornerRadius="24dp"
+        tools:ignore="SpUsage" />
+
+</LinearLayout>
