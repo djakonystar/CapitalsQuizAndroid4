@@ -64,6 +64,7 @@ class GameActivity : AppCompatActivity() {
                         currentQuestionId++
                         setQuestion()
                     }
+                    // added comment
                 }
             }
         }
