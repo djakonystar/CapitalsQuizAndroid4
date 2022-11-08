@@ -1,6 +1,8 @@
 package uz.texnopos.capitalsquizapp.data
 
 object Constants {
+    const val PREFS_NAME = "CapitalsSettings"
+
     fun provideQuestions(): List<Question> {
         val questions = mutableListOf<Question>()
 

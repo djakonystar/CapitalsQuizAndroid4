@@ -6,4 +6,7 @@
     <string name="error_required">Required!</string>
     <string name="text_submit">Submit</string>
     <string name="continue_text">Continue</string>
+    <string name="question_counter">%d / %d</string>
+    <string name="finish_text">Finish</string>
+    <string name="result_text"><b>%s</b>, siz <b>%d</b> sorawdan <b>%d</b> sorawına durıs juwap bere aldınız!</string>
 </resources>

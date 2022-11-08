@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.widget.addTextChangedListener
+import uz.texnopos.capitalsquizapp.data.Constants
 import uz.texnopos.capitalsquizapp.databinding.ActivityStartBinding
 
 class StartActivity : AppCompatActivity() {
@@ -15,7 +16,7 @@ class StartActivity : AppCompatActivity() {
         binding = ActivityStartBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val sharedPreferences = getSharedPreferences("CapitalsSettings", Context.MODE_PRIVATE)
+        val sharedPreferences = getSharedPreferences(Constants.PREFS_NAME, Context.MODE_PRIVATE)
 
         binding.etName.addTextChangedListener {
             binding.tilName.isErrorEnabled = false

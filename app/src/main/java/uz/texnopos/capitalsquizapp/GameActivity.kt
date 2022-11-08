@@ -1,20 +1,23 @@
 package uz.texnopos.capitalsquizapp
 
+import android.content.Intent
 import android.content.res.ColorStateList
-import androidx.appcompat.app.AppCompatActivity
+import android.os.Build
 import android.os.Bundle
 import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.google.android.material.progressindicator.LinearProgressIndicator
 import com.google.android.material.snackbar.Snackbar
 import uz.texnopos.capitalsquizapp.data.Constants
-import uz.texnopos.capitalsquizapp.data.Question
 import uz.texnopos.capitalsquizapp.databinding.ActivityGameBinding
 
 class GameActivity : AppCompatActivity() {
     private lateinit var binding: ActivityGameBinding
-    private val questions = Constants.provideQuestions()
+    private val questions = Constants.provideQuestions().shuffled()
     private var currentQuestionId = -1
     private var selectedAnswerId = -1
+    private var correctAnswers = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +28,8 @@ class GameActivity : AppCompatActivity() {
         setQuestion()
 
         binding.apply {
+            progressBar.max = questions.size
+
             btnOptionOne.setOnClickListener {
                 optionSelected(btnOptionOne)
                 selectedAnswerId = 0
@@ -46,10 +51,19 @@ class GameActivity : AppCompatActivity() {
             }
 
             btnSubmit.setOnClickListener {
-                if (btnSubmit.text == getString(R.string.text_submit)) checkAnswer()
-                else {
-                    currentQuestionId++
-                    setQuestion()
+                when (btnSubmit.text) {
+                    getString(R.string.text_submit) -> checkAnswer()
+                    getString(R.string.finish_text) -> {
+                        val intent = Intent(this@GameActivity, ResultActivity::class.java)
+                        intent.putExtra("result", correctAnswers)
+                        intent.putExtra("questions_count", questions.size)
+                        startActivity(intent)
+                        finish()
+                    }
+                    getString(R.string.continue_text) -> {
+                        currentQuestionId++
+                        setQuestion()
+                    }
                 }
             }
         }
@@ -59,11 +73,23 @@ class GameActivity : AppCompatActivity() {
         val currentQuestion = questions[currentQuestionId]
 
         binding.apply {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                progressBar.setProgress(currentQuestionId + 1, true)
+            } else {
+                progressBar.progress = currentQuestionId + 1
+            }
+            tvCounter.text =
+                getString(R.string.question_counter, currentQuestionId + 1, questions.size)
             tvQuestion.text = currentQuestion.question
             btnOptionOne.text = currentQuestion.answers[0]
             btnOptionTwo.text = currentQuestion.answers[1]
             btnOptionThree.text = currentQuestion.answers[2]
             btnOptionFour.text = currentQuestion.answers[3]
+
+            btnOptionOne.isEnabled = true
+            btnOptionTwo.isEnabled = true
+            btnOptionThree.isEnabled = true
+            btnOptionFour.isEnabled = true
 
             btnOptionOne.backgroundTintList = ColorStateList.valueOf(
                 ContextCompat.getColor(this@GameActivity, R.color.transparent)
@@ -115,6 +141,10 @@ class GameActivity : AppCompatActivity() {
             return
         }
 
+        if (currentQuestion.correctAnswerId == selectedAnswerId) {
+            correctAnswers++
+        }
+
         binding.apply {
             when (selectedAnswerId) {
                 0 -> {
@@ -162,7 +192,18 @@ class GameActivity : AppCompatActivity() {
                 }
             }
 
-            btnSubmit.text = getString(R.string.continue_text)
+            if (currentQuestionId != questions.lastIndex) {
+                btnSubmit.text = getString(R.string.continue_text)
+            } else {
+                btnSubmit.text = getString(R.string.finish_text)
+            }
+
+            btnOptionOne.isEnabled = false
+            btnOptionTwo.isEnabled = false
+            btnOptionThree.isEnabled = false
+            btnOptionFour.isEnabled = false
+
+            selectedAnswerId = -1
         }
     }
 }
